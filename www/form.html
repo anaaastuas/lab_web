@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация на хакатон</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e1e5e9;
+        }
+        
+        .checkbox-item,
+        .radio-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item:last-child,
+        .radio-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .checkbox-item label,
+        .radio-item label {
+            margin-bottom: 0;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: #5a6fd8;
+        }
+        
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        
+        .result-title {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .result-item {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e1e5e9;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .result-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .result-value {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Регистрация на хакатон</h1>
+        
+        <form id="hackathonForm">
+            <!-- Текстовое поле: Имя -->
+            <div class="form-group">
+                <label for="username">Имя участника:</label>
+                <input type="text" id="username" name="username" placeholder="Введите ваше имя" required>
+            </div>
+
+            <!-- Числовое поле: Возраст -->
+            <div class="form-group">
+                <label for="age">Возраст:</label>
+                <input type="number" id="age" name="age" min="16" max="60" placeholder="Ваш возраст" required>
+            </div>
+
+            <!-- Email поле -->
+            <div class="form-group">
+                <label for="email">Email для связи:</label>
+                <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+            </div>
+
+            <!-- Выпадающий список: Направление -->
+            <div class="form-group">
+                <label for="direction">Направление хакатона:</label>
+                <select id="direction" name="direction" required>
+                    <option value="">Выберите направление</option>
+                    <option value="web">Web-разработка</option>
+                    <option value="mobile">Мобильные приложения</option>
+                    <option value="ai">Искусственный интеллект</option>
+                    <option value="blockchain">Блокчейн</option>
+                </select>
+            </div>
+
+            <!-- Чекбокс: Опыт участия -->
+            <div class="form-group">
+                <label>Опыт участия:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="experience" name="experience" value="yes">
+                        <label for="experience">У меня есть опыт участия в хакатонах</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Радио-кнопки: Роль в команде -->
+            <div class="form-group">
+                <label>Роль в команде:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="role_developer" name="role" value="developer" required>
+                        <label for="role_developer">Разработчик (Frontend/Backend)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="role_designer" name="role" value="designer">
+                        <label for="role_designer">Дизайнер</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="role_analyst" name="role" value="analyst">
+                        <label for="role_analyst">Аналитик/ML-специалист</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кнопка отправки -->
+            <button type="submit" class="submit-btn">✅ Зарегистрироваться на хакатон</button>
+        </form>
+
+        <!-- Блок для вывода результатов -->
+        <div id="result">
+            <div class="result-title">📋 Ваши данные для регистрации:</div>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
